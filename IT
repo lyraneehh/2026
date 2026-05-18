@@ -1,6 +1,17 @@
-Docker incidents:
+You observed Crypto-miner application running on an instance:
 
-- Exposed docker API server
-- Exposed API keys
-- Malicious base container images
-- Container breakouts
+Immediately:
+
+check if instance is publicly accesible: Exposed ports, services etc
+check what has the ability to run instances?
+  
+  - User account (How did it get stolen, bruteforce? no mfa, supply chain attack gain access to stolen creds in build runner?)
+  - Instance
+  - CICD Pipeline
+  
+  - are there any CICD pipelines that run instances?
+        - Golden image compromise, container registry compromised? 
+        - 
+
+
+How to determine how an instance was launched
