@@ -1,4 +1,4 @@
-You observed Crypto-miner application running on an instance:
+ ======= You observed Crypto-miner application running on an instance?  =======
 
 Immediately:
 
@@ -14,4 +14,23 @@ check what has the ability to run instances?
         - 
 
 
-How to determine how an instance was launched
+ =======How to determine how an instance was launched? =======
+
+
+======= What are some considerations when performing evidence acquisitions? =======
+
+When performing evidence collection, one key consideration is where the evidence is being collected from: bare metal, laptop, physical server, cloud VM, or VPC environment.
+In a cloud/VPC environment, we may be able to collect evidence by taking a cloud snapshot/image of the VM’s attached disk volumes from the cloud account. 
+This is different from bare metal collection, where we may need to physically access the disk, use forensic imaging tools, or collect from the live operating system.
+
+We also need to consider if LVMs are being used. LVMs are logical storage areas on top of disk or partitions. So when running lsblk, one would typically see /dev/sda1,sda2, or /dev/vda1,vda2. These are partitions.
+Of that partition, assuming lVMs are being used, one would see a LVM (physical volume - which its ironic because its not physical, since its on top of something logical, hence its a logical physical volume),  then carved out is volume group, 
+which is the name of the volume, and then the actual logical volume. 
+
+
+└── /dev/sda2              ← partition used for LVM
+      └── LVM Physical Volume
+            └── Volume Group: ubuntu-vg
+                  ├── Logical Volume: root-lv   → /
+                  ├── Logical Volume: home-lv   → /home
+                  └── Logical Volume: var-lv    → /var
