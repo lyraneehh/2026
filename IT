@@ -1,4 +1,58 @@
- ======= You observed Crypto-miner application running on an instance?  =======
+==== AI trends in cyber security ======
+
+
+======= Windows =====
+Evidence of execution
+
+How are files stored in windows (MFT, USNjournal)
+
+Evidence of exfiltration
+
+Persistency
+
+How does lateral movement look like
+
+Browser forensics, chrome, edge, firefox etc
+
+Different logs. Also, sysmon vs windows event
+
+What artifacts can show PowerShell execution?
+
+======= Linux ======
+How to mount a filesystem and analyze 
+
+Evidence of execution
+
+How are files stored in windows
+
+evidence of exfiltration
+
+How does lateral movement look like
+
+Different logs
+
+===== General ====
+What is process injection?
+What is DLL sideloading?
+
+TLS handshake
+
+How DNS works
+
+SPF, DKIM, DMARC, ARC
+
+
+Walk me through how you'd triage an incident
+- Cloud incident
+- CICD 
+
+
+==== Security architecture ===
+
+What would you secure your architecturec- load balacners, firewalls, etc
+
+====================
+======= You observed Crypto-miner application running on an instance?  =======
 
 Immediately:
 
@@ -27,10 +81,45 @@ We also need to consider if LVMs are being used. LVMs are logical storage areas 
 Of that partition, assuming lVMs are being used, one would see a LVM (physical volume - which its ironic because its not physical, since its on top of something logical, hence its a logical physical volume),  then carved out is volume group, 
 which is the name of the volume, and then the actual logical volume. 
 
+==== Case study ====
 
-└── /dev/sda2              ← partition used for LVM
-      └── LVM Physical Volume
-            └── Volume Group: ubuntu-vg
-                  ├── Logical Volume: root-lv   → /
-                  ├── Logical Volume: home-lv   → /home
-                  └── Logical Volume: var-lv    → /var
+While creating new user accounts in Active Directory, you find that several legitimate user accounts with no apparent connection are part of an undocumented group named "test". 
+
+What do you look for to investigate whether an incident occurred? Focus on the efficiency of your investigative actions here. 
+--
+You believe a Linux server was used as a jump box to pivot into another network segment, but the network traffic would not have crossed a sensor boundary for logging.
+
+What evidence do you look for to prove the belief?
+--
+A user reports their hard drive is full, but they don't know why. While investigating, you find a series of large, password-protected RAR files that the user knows nothing about. 
+
+What do you look for to investigate whether an incident occurred?
+--
+You've discovered a host with multiple instances of Chrome running the --hidden option. 
+
+What do you look for to investigate whether an incident occurred?
+--
+Browser history for an HR user shows repeated visits to chat.openai[.]com, followed by creation of C:\Users\chris\AppData\Local\Temp\cleanup[.]ps1. The file is not available, and the hash shows no matches in OSINT resources.
+
+What do you look for to investigate whether an incident occurred?
+--
+You find Event ID 7045 showing a new service installed: WinUpdateCheck, pointing to C:\ProgramData\wucheck.exe. You report to the SOC lead that this system is infected and needs to be contained. 
+
+They ask you to justify that request. 
+
+What evidence do you present to elevate this from “suspicious service creation” to confirmed malicious activity? Lead with your strongest likely evidence sources and conclusions. 
+--
+A user reports OneDrive crashing on startup. You see OneDrive.exe launched as expected, but then you spot conhost.exe spawned within 2 seconds, followed by mshta.exe -- no obvious error dialogs.
+
+What do you look for to investigate whether an incident occurred?
+--
+You know an attacker accessed several customer support workstations in the past month based on discovery of a consistent persistence mechanism. You suspect wider access, but auth logs only go back 24h. 
+
+How can you determine where else the attacker went?
+--
+You can pull any five forensic artifacts from a HDD and are limited to those, which do you pull and why?
+
+Keeping it intentionally vague to see what clarifying questions they ask if any, and to see their thinking 
+--
+“tell me what happens when you visit a website” and my immediate response is always, “I can speak on this at length, do you want me to go into detail and frame it using all the layers of the OSI model?” They usually respond “yes,” and I usually get cut off on layer 5 for the next question.
+--
