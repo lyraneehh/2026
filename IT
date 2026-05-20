@@ -10,24 +10,66 @@ layers
 
 ======= Windows =====
 Evidence of execution
+- prefetch (shows first and last execution, up to 8 times)
+- BAM 
+- UserAssist (shows app name, run count, focus count)
+- RunMRU (Windows+R)
+- LNK files (there is creation timestamp, and target timestamp)
+- RecentDocs (Tracks files and folders opened by the user.)
 
 How are files stored in windows (MFT, USNjournal)
 
-Evidence of exfiltration
+Evidence of exfiltration.
+- SRUM (updates every hour, logs ttoal bytes sent per exe.
+
+but for the most part, you got to tell the story:
+We see some files being accessed, this can be confirmed through recentdocs, lnkfiles, prefetch files, and then 
+we observed file creations, in the form of a zip file, and then we observe through DNS logs, browser history.
+
+Usually exfiltration, there is a lifecycle: Attacker 
+1) Access the files 
+2) Stage the files (mft/usnjournal records shows around time of files being accessed, any .zip files created?) Can check deleted too
+3) Exfiltrate the files (check firewall logs, dnscache (voltitle), powershell logs (would show commands executed), 
+Security event logs (to see what process was being spawned, curl? wget? rcylone? winscp?) 
+sysmon logs (show process creation, network connection, dns query,
+SMB logs (Network share accessed)
+
 
 Persistency
+- run, runonce
+- winlogon
+- shortcut file in startup folder
+- services, schtasks
+- WMI event subscriptions (subscriptions have trigger and actions). Generayll wanna search for CommandLineEventConsumer class, 
+WMI creation event logs: syslogs, event logs, C:\Windows\System32\wbem\Repository\ 
+
+- DLLs through search order hijacking
+- extensions + registry policy change
+- creating accounts
+
 
 How does lateral movement look like
+- windows event logs with logon types (smb, rdp, winrm, pass the hash, 
 
 Browser forensics, chrome, edge, firefox etc
+- chrome/edge: 
+get history.db, look for the urls, visit_source, transition types etc, dump it in sqlite 
+get cookies (dont directly prove page visit, but supports it)
+get cache (but hard to interept)
+- mozilla: places.sqlite (history),
 
-Different logs. Also, sysmon vs windows event
+sysmon vs windows event
+- window event logs are more for authentication related and has been there since the start
+- sysmon are more for threat hunting, more granula, used commonly in edr ingestion
 
 What artifacts can show PowerShell execution?
+- ConsoleHost_history.txt
+- your same few artifacts,
 
-what does conhost.exe do
+Can DLLs run on their own? no, they need an .exe
 
-Would applications be installed through service.exe? or svchost?
+only services.exe, spawn svchosts.exe, anything else likely malicious
+
 
 ======= Linux ======
 How to mount a filesystem and analyze 
@@ -46,6 +88,10 @@ if a compromised host connects to another host, from the compromised host, besid
 host connected to
 
 ===== General ====
+
+what voliatile memory to collect
+
+
 What is process injection?
 What is DLL sideloading?
 
