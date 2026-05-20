@@ -124,7 +124,37 @@ SPF, DKIM, DMARC, ARC
 Walk me through how you'd triage an incident
 - Cloud incident
 - CICD 
+======= Kubernetes ======
 
+we use kubernetes when we want to deploy the application, whether its in a testing or production enviornment.
+
+And the purpose of kubernetes,
+
+i mean what are some issues you face when you're deploying or maintaining an app,
+
+- the most obvous one is; hey my server goes down, gotta start it up, you gotta find which one it is, 
+what. caused the server to go down, and then most important, spin a new server,
+
+
+and how kubernetes solves this is through desired state, you state, through a yaml file, 
+hey if something goes down, spin a new instance, with the same number of pods, and oh and every few minutes, 
+i want you to make a request to myself and see if it can receieve, if i cant, that means im down. This is self healing
+
+
+next: Reousrce utilization: say you have 4 servers, its expensive to run servers, and all servers are running at 10% utlization ( i mean if there is
+not a lot of traffic = not a lot of utiliazation = still waste of money
+
+kubernetes solves this by saying ok, if traffic is low, remove all the rest of the instances, and only use 1, if traffic is more, up the instances.
+
+So then next thing it solves is, since it tries and reaches desired state, that means pods or instances keep dying, so how do users know what is the 
+IP of the website. It does so through something called services. there can be 1 or more services, in an instance, and each instance
+can have 1 or many pods. and say you kill a pod that is the front end to the website, and therefore the IP along with the pod goes with it.
+how can users still access that pod? its because it uses the service's IP.
+
+So then next thing it solves is, since it tries and reaches desired state, that means pods or instances keep dying, so how do users know what is the 
+IP of the website. It does so through something called services. there can be 1 or more services, in an instance, and each instance
+can have 1 or many pods. and say you kill a pod that is the front end to the website, and therefore the IP along with the pod goes with it.
+how can users still access that pod? its because it uses the service's IP.
 
 ==== Security architecture ===
 
