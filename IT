@@ -25,6 +25,10 @@ Different logs. Also, sysmon vs windows event
 
 What artifacts can show PowerShell execution?
 
+what does conhost.exe do
+
+Would applications be installed through service.exe? or svchost?
+
 ======= Linux ======
 How to mount a filesystem and analyze 
 
