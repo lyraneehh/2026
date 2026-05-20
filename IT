@@ -156,6 +156,13 @@ IP of the website. It does so through something called services. there can be 1 
 can have 1 or many pods. and say you kill a pod that is the front end to the website, and therefore the IP along with the pod goes with it.
 how can users still access that pod? its because it uses the service's IP.
 
+How is kubenetes attacked?
+- exposed pod, -> access/curl service token (/var/run/secrets/kubernetes.io/serviceaccount/token) --> RBAC permissions allow for
+creating pods, list secrets, access other pods, generate long lived auth tokens for other serviceaccounts.
+FYI creating pods = attacker creates new yaml file, uses stolen service token to run new yaml file to create pod, then set priv=true to get overly priv pod
+- supply chain attack, cicd pipeline compromised --> inject malicious binary/reverse shell into container file ssytem during build stage
+- Exposed kube-api server 
+
 ==== Security architecture ===
 
 What would you secure your architecturec- load balacners, firewalls, etc
@@ -192,7 +199,8 @@ which is the name of the volume, and then the actual logical volume.
 
 ==== Case study ====
 
-While creating new user accounts in Active Directory, you find that several legitimate user accounts with no apparent connection are part of an undocumented group named "test". 
+While creating new user accounts in Active Directory, you find that several legitimate user accounts with no apparent connection are part of an
+undocumented group named "test". 
 
 What do you look for to investigate whether an incident occurred? Focus on the efficiency of your investigative actions here. 
 --
