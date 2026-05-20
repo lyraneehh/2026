@@ -70,13 +70,23 @@ Can DLLs run on their own? no, they need an .exe
 
 only services.exe, spawn svchosts.exe, anything else likely malicious
 
+Volatile:
+- netstat (network)
+- process list / tasklist
+- clipboard contents/
 
 ======= Linux ======
 How to mount a filesystem and analyze 
 
-Evidence of execution
+Evidence of execution:
+- if you have access to volatile data and the scope was in the last few days, ausearch -x (bash, wget, curl etc) shows files that were recently accessed.
+- stat (although not so good to find evidence of execution, but rather evidence of staging/creation
+- 
 
-How are files stored in windows
+Volatile:
+- Process Memory Maps (/proc/<PID>/exe & cmdline
+
+How are files stored in linux
 
 evidence of exfiltration
 
@@ -86,6 +96,15 @@ Different logs
 
 if a compromised host connects to another host, from the compromised host, besides known_host, what are other ways it check where the compromised 
 host connected to
+
+what volitile data to collect:
+- ss/netstat (active sockets/network connections)
+- process environment/command lines (proc) or running process ps -aux
+  - cmdline, environ shows execution arguments
+  - copy evertyhing from /proc/[0-9]*/
+-  open FD (lsof) and deleted binaries (ls /proc/*/exe | grep deleted)
+
+
 
 ===== General ====
 
