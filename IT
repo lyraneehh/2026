@@ -38,6 +38,9 @@ How does lateral movement look like
 
 Different logs
 
+if a compromised host connects to another host, from the compromised host, besides known_host, what are other ways it check where the compromised 
+host connected to
+
 ===== General ====
 What is process injection?
 What is DLL sideloading?
