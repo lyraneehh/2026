@@ -1,14 +1,14 @@
-==== AI trends in cyber security ======
+============================ AI trends in cyber security ==============================================================
 
-== AD ==
+============================ AD ======================================================================================
 Different attacks, kerberosting, asrep, SPN
 
-=== docker forensics ==
+============================ docker forensics ======================================================================================
 
 layers
 
 
-======= Windows =====
+============================ Windows =========================================================================================
 Evidence of execution
 - prefetch (shows first and last execution, up to 8 times)
 - BAM 
@@ -75,7 +75,7 @@ Volatile:
 - process list / tasklist
 - clipboard contents/
 
-======= Linux ======
+============================ Linux ==============================================================
 How to mount a filesystem and analyze 
 
 Evidence of execution:
@@ -106,7 +106,7 @@ what volitile data to collect:
 
 
 
-===== General ====
+============================ General ============================================================
 
 what voliatile memory to collect
 
@@ -124,7 +124,10 @@ SPF, DKIM, DMARC, ARC
 Walk me through how you'd triage an incident
 - Cloud incident
 - CICD 
-======= Kubernetes ======
+
+============================ Container breakout ===========================================================
+
+============================ Kubernetes =======================================================
 
 we use kubernetes when we want to deploy the application, whether its in a testing or production enviornment.
 
@@ -163,12 +166,12 @@ FYI creating pods = attacker creates new yaml file, uses stolen service token to
 - supply chain attack, cicd pipeline compromised --> inject malicious binary/reverse shell into container file ssytem during build stage
 - Exposed kube-api server 
 
-==== Security architecture ===
+============================ Security architecture ===========================================================
 
 What would you secure your architecturec- load balacners, firewalls, etc
 
-====================
-======= You observed Crypto-miner application running on an instance?  =======
+
+============================ You observed Crypto-miner application running on an instance?  =======
 
 Immediately:
 
@@ -184,10 +187,10 @@ check what has the ability to run instances?
         - 
 
 
- =======How to determine how an instance was launched? =======
+============================ How to determine how an instance was launched? =======
 
 
-======= What are some considerations when performing evidence acquisitions? =======
+============================ What are some considerations when performing evidence acquisitions? =======
 
 When performing evidence collection, one key consideration is where the evidence is being collected from: bare metal, laptop, physical server, cloud VM, or VPC environment.
 In a cloud/VPC environment, we may be able to collect evidence by taking a cloud snapshot/image of the VM’s attached disk volumes from the cloud account. 
@@ -197,7 +200,7 @@ We also need to consider if LVMs are being used. LVMs are logical storage areas 
 Of that partition, assuming lVMs are being used, one would see a LVM (physical volume - which its ironic because its not physical, since its on top of something logical, hence its a logical physical volume),  then carved out is volume group, 
 which is the name of the volume, and then the actual logical volume. 
 
-==== Case study ====
+============================ Case study ====
 
 While creating new user accounts in Active Directory, you find that several legitimate user accounts with no apparent connection are part of an
 undocumented group named "test". 
