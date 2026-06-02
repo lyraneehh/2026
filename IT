@@ -1,3 +1,35 @@
+== How would you secure your exchange? ==
+
+1) Public edge protection
+2) API security
+3) Business logic
+4) Internal network segmentation
+5) Identity nd Access management
+6) Wallet and custody security
+7. Database and data protection
+Secrets and key management
+Secure SDLC and CI/CD
+Monitoring, detection, and incident response
+Third-party and supply-chain security
+Resilience and availability
+
+
+Outside --> make request to bybit.com --> hit CDN --> hit WAF ---> load balancer --> actual web server.
+- bybit.com should never give its IP, you should give the CDN ip.
+- CDN will allow for rate limiting, cachche, bot prevents, risky users (using known list of bad IPs/Tor nodes/Proxy)
+
+- WAF prevent: xss, sql, directory traversal, sensitive file path, command injections, configure to add known bad payloads
+
+From web server --> App server
+- each api request should be injected with a secret header (x-forward-header, x-secret-internal),
+- security groups, iptables, only allow traffic to/from web server.
+- mTLS to ensure if an a server in the network gets compromised and attacker runs tcpdump, they dont steal the secret header and do some sort of SSRF
+
+
+
+
+
+
 ====== Gateway vs FW ===
 
 Gateway filters on the application layer such as:
