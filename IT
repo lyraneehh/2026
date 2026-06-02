@@ -4,6 +4,19 @@ Difference between oauth2 vs odic
 
 1) Public edge protection
 2) API security
+  - https
+  - use OAUTH2, federated access
+  - WebAuthn (fingerprint, who you are and what you have)
+  - keys with various levels - read key for read access, write key for write, admin key for admin, instead of using master key. Keys expire
+  - RBAC
+  - Rate limiting (1 IP only 20 hits per min, free tier only 1k per day) both per request, and per type of request (for example, there would be more read request than write, so perhaps only 1k read but 500 write)
+  - API versioning (include versioning number in url endpoint, so /api/v1/trade, /api/v2/trade, so we can deprecate versions we dont need
+  - allow list (principal of deny all) - only specify IP range to hit certain endpoint
+  - check OWASAP for API risk
+  - use an api gateway
+  - proper error handling, never return full stack error messaging
+  - input validation (both done on client and server)
+
 3) Business logic
 4) Internal network segmentation
 5) Identity nd Access management
