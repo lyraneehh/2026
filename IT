@@ -5,7 +5,7 @@ Difference between oauth2 vs odic
 1) Public edge protection
 2) API security
   - https
-  - use OAUTH2, federated access
+  - use OAUTH2 integrated with federated access
   - WebAuthn (fingerprint, who you are and what you have)
   - keys with various levels - read key for read access, write key for write, admin key for admin, instead of using master key. Keys expire
   - RBAC
@@ -29,18 +29,17 @@ Third-party and supply-chain security
 Resilience and availability
 
 
-Outside --> make request to bybit.com --> hit CDN --> hit WAF ---> load balancer --> actual web server.
+Browser: Outside --> make request to bybit.com --> hit CDN --> hit WAF ---> load balancer --> actual web server.
 - bybit.com should never give its IP, you should give the CDN ip.
 - CDN will allow for rate limiting, cachche, bot prevents, risky users (using known list of bad IPs/Tor nodes/Proxy)
 
 - WAF prevent: xss, sql, directory traversal, sensitive file path, command injections, configure to add known bad payloads
 
-From web server --> App server
+in the context of browser ONLY,
+From web server -> api gateway --> App server
 - each api request should be injected with a secret header (x-forward-header, x-secret-internal),
 - security groups, iptables, only allow traffic to/from web server.
 - mTLS to ensure if an a server in the network gets compromised and attacker runs tcpdump, they dont steal the secret header and do some sort of SSRF
-
-
 
 
 
