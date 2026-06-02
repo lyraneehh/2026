@@ -1,3 +1,17 @@
+====== Gateway vs FW ===
+
+Gateway filters on the application layer such as:
+
+IF API path is not allowed
+OR HTTP method is not allowed
+OR token is missing/invalid
+OR user role is not allowed
+OR rate limit exceeded
+OR request body is invalid
+OR risk score is too high
+THEN reject
+
+
 ============================ AI trends in cyber security ==============================================================
 
 ============================ AD ======================================================================================
